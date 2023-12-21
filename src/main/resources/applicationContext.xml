@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--scope 指定创建的对象是否为单例，默认为 singleton（单例），通过设置为 prototype，指定非单例模式。-->
+    <!--    什么时候使用单例？ 无状态对象，我们只关注对象的方法，不在乎对象的内部状态。-->
+    <!--    反之，如果我们关心对象的属性和状态，则不能使用单例。-->
+    <bean id="bookDao" class="org.example.dao.impl.BookDaoImpl" scope="prototype"/>
+    <bean id="bookService" class="org.example.service.impl.BookServiceImpl">
+        <!--we have to write the setter method for the bookDao field-->
+        <property name="bookDao" ref="bookDao"/>
+    </bean>
+</beans>
